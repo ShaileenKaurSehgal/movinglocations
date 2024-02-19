@@ -1,0 +1,36 @@
+<div class="container mt-4">
+    <div>
+        <span  class="me-2 searchArea">
+            <input type="text" class="form-control-sm searchInput" [(ngModel)]="searchedLocation">
+            <button class="btn " (click)="clearSearch()">X</button>
+        </span>
+        <button class="btn btn-primary btn-sm" (click)="searchLocation(searchedLocation)"> Search Location</button>
+    </div>
+
+    <hr>
+    <table *ngIf="this.allLocations.length>0" class="table table-bordered bprder text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>Move Up</th>
+                <th>Location</th>
+                <th>Move Down</th>
+            </tr>
+        </thead>
+        <tr *ngFor="let location of allLocations;let index = index"  class="dataRow">
+            <td>
+                <a *ngIf="index>0" (click)="moveLocation(location,index,'mt')">
+                    <i class="fa-solid fa-chevron-up"></i>
+                </a>
+            </td>
+            <td>{{location}}</td>
+            <td>
+                <a *ngIf="index< allLocations.length-1" (click)="moveLocation(location,index,'md')">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </a>
+            </td>
+        </tr>
+    </table>
+    <div *ngIf="this.allLocations.length===0">
+        No Data Found
+    </div>
+</div>
